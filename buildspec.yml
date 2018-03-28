@@ -1,9 +1,14 @@
 version: 0.2
 
+env:
+  variables:
+    TEST_MESSAGE: Good Morning
+
 phases:
   install:
     commands:
       - echo Entered the install phase...
+      - echo ${TEST_MESSAGE}
 
   pre_build:
     commands:
