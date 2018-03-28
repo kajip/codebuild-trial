@@ -22,5 +22,9 @@ phases:
 
 artifacts:
   files:
-    - build/libs/codebuild-trial-1.0.jar
+    - build/libs/base-project-1.0.war
   discard-paths: yes
+
+cache:
+  paths:
+    - '/root/.gradle/**/*'
