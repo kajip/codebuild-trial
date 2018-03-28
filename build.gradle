@@ -1,0 +1,42 @@
+plugins {
+    id 'org.springframework.boot' version '1.5.9.RELEASE'
+    id 'org.flywaydb.flyway' version '5.0.3'
+    id "com.palantir.docker" version "0.17.2"
+}
+
+group='jp.co.biglobe'
+version='1.0'
+
+apply plugin: 'groovy'
+
+// 依存ライブラリの設定
+apply from: file("${rootProject.rootDir}/etc/gradle/library.gradle")
+
+// Dockerタスクの設定
+apply from: file("${rootProject.rootDir}/etc/gradle/docker.gradle")
+
+// Gradleラッパータスクの設定
+apply from: file("${rootProject.rootDir}/etc/gradle/wrapper.gradle")
+
+
+// Flywayの設定
+// ＊別ファイルに分けるとエラーになるのでここに書く
+
+task migrateH2(type: org.flywaydb.gradle.task.FlywayMigrateTask) {
+    url = 'jdbc:h2:./build/test'
+    user = 'sa'
+    password = ''
+    locations = [
+            'filesystem:etc/database/h2'
+    ]
+}
+
+task migrateMysql(type: org.flywaydb.gradle.task.FlywayMigrateTask) {
+    url = 'jdbc:mysql://localhost:3306/service-contract-management'
+    user = 'service-contract'
+    password = 'passw0rd'
+    locations = [
+        'filesystem:etc/database/mysql'
+    ]
+}
+
