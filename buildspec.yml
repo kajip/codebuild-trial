@@ -18,7 +18,7 @@ phases:
     commands:
       - echo Entered the build phase...
       - echo Build started on `date`
-      - ./gradlew build -x test
+      - ./gradlew migrateH2 build
       - echo Build completed on `date`
 
   post_build:
@@ -27,8 +27,10 @@ phases:
 
 artifacts:
   files:
-    - build/libs/codebuild-trial-1.0.war
-  discard-paths: yes
+    - build/libs/codebuild-trial-1.0.jar
+    - build/test-results/**/*
+    - build/reports/**/*
+  discard-paths: no
 
 cache:
   paths:
