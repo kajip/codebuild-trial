@@ -21,9 +21,9 @@ dependencies {
 
     compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
 
-    // DBを使うときはここをコメントアウト
     compile "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}"
     runtime "com.h2database:h2:1.4.196"
+    runtime "mysql:mysql-connector-java:5.1.46"
 
 
     testCompileOnly "org.projectlombok:lombok:${lombokVersion}"

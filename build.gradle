@@ -32,11 +32,10 @@ task migrateH2(type: org.flywaydb.gradle.task.FlywayMigrateTask) {
 }
 
 task migrateMysql(type: org.flywaydb.gradle.task.FlywayMigrateTask) {
-    url = 'jdbc:mysql://localhost:3306/service-contract-management'
-    user = 'service-contract'
+    url = 'jdbc:mysql://localhost:3306/trial'
+    user = 'trial'
     password = 'passw0rd'
     locations = [
         'filesystem:etc/database/mysql'
     ]
 }
-
