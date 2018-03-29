@@ -9,16 +9,24 @@ phases:
     commands:
       - echo Entered the install phase...
       - echo ${TEST_MESSAGE}
+      # Docker Daemonの起動
+      - nohup /usr/local/bin/dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375 -s overlay &
+      - timeout -t 15 sh -c "until docker info; do echo .; sleep 1; done"
+
 
   pre_build:
     commands:
       - echo Entered the pre_build phase...
+      # Docker Compose で MySQLを起動
+      - docker-compose up -d
+      # mysqlが起動するまでとりあえず5秒待つ（求ム！もう少しスマートな方法）
+      - sleep 5
 
   build:
     commands:
       - echo Entered the build phase...
       - echo Build started on `date`
-      - ./gradlew migrateH2 build
+      - ./gradlew migrateMySQL build
       - echo Build completed on `date`
 
   post_build:
