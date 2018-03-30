@@ -19,3 +19,9 @@ phases:
   post_build:
     commands:
       - echo Entered the post_build phase...
+
+artifacts:
+  files:
+    - build/libs/base-project-1.0.war
+    - build/reports/**/*
+  discard-paths: no
