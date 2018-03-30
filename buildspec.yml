@@ -22,7 +22,7 @@ phases:
 
 artifacts:
   files:
-    - build/libs/codebuild-trial-1.0.war
+    - build/libs/codebuild-trial-1.0.jar
     - build/reports/**/*
   discard-paths: no
 
